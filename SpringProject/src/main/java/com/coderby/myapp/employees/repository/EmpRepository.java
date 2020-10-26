@@ -2,6 +2,10 @@ package com.coderby.myapp.employees.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,9 +69,45 @@ public class EmpRepository implements IempRepository{
 	
 	@Override
 	public void updateEmp(EmpVO emp) {
-		String sql = "update employees "
-				+"set first_name=?, last_name=?, email=?, phone_number=?, hire_date=?, "
-				+"job_id=?, salary=?, commission_pct=?, manager_id=?, department_id=? where employee_id=?";
+		String sql = "update employees set first_name=?, last_name=?, email=?, phone_number=?, hire_date=?, job_id=?, salary=?, commission_pct=?, manager_id=?, department_id=? where employee_id=?";
+		
+		/*에러발생이유 = DB에 입력하는 입사날짜(hire_Date)의 형식이 페이지 조회시 yyyy-mm-dd형으로 브라우저에 출력되는데,
+						 이를 yyyy-mm-dd형으로 입력하면 날짜 입력 형식이 다르게 입력됨.
+						 따라서 yyyy-mm-dd형을 dd-mon-yyyy형(ex: 20-MAR-2020)으로 내용을 바꿔야함*/
+		
+		/*
+		Date from = emp.getHireDate();
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		String to = fm.format(from);
+		System.out.println("to값 = " + to);
+		
+		StringBuilder as = new StringBuilder();
+		char monthChar[] = null;
+		for(int j=0; j<to.length(); j++) {
+			as.append(to.charAt(j));
+		}
+		System.out.println("as값 = " + as);
+		
+		String month[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+		Map<String, Object> map = new HashMap<String, Object>();
+		for(int j=0; j<12; j++) {
+			map.put("0" + Integer.toString(j+1), month[j]);
+		}
+		as.getChars(5, 7, monthChar, 0);
+		String monthKey = Character.toString(monthChar[0]) + Character.toString(monthChar[1]);
+		
+		System.out.println(monthChar);
+		
+		as.replace(5, 7, map.get(monthKey).toString());
+		to = as.toString();
+		try {
+			from = fm.parse(to);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		*/
 		jdbcTemplate.update(sql, emp.getFirstName(), emp.getLastName(), emp.getEmail(), emp.getPhoneNumber(), emp.getHireDate(),
 				emp.getJobId(), emp.getSalary(), emp.getCommissionPct(), emp.getManagerId(), emp.getDepartmentId(), emp.getEmployeeId());
 	}
