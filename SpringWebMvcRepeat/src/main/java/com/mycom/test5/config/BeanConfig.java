@@ -6,14 +6,21 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mycom.test5.bean.Member;
 import com.mycom.test5.bean.MemberDao;
+import com.mycom.test5.service.ChangePasswordService;
 import com.mycom.test5.service.GetMembersService;
 import com.mycom.test5.service.LoginService;
 import com.mycom.test5.service.RegisterMemberService;
+import com.mycom.test5.validator.ChangePasswordValidator;
+import com.mycom.test5.validator.LoginValidator;
 
 @Configuration
+//@EnableTransactionManagement
 public class BeanConfig {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
@@ -31,6 +38,14 @@ public class BeanConfig {
 		dataSource.setMinEvictableIdleTimeMillis(60000 * 3);
 		return dataSource;
 	}
+	/*
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager tm = new DataSourceTransactionManager();
+		tm.setDataSource(dataSource());
+		return tm;
+	}
+	*/
 	@Bean
 	public MemberDao memberDao() {
 		MemberDao memberDao = new MemberDao();
@@ -48,5 +63,17 @@ public class BeanConfig {
 	@Bean
 	public LoginService loginService() {
 		return new LoginService();
+	}
+	@Bean
+	public LoginValidator loginValidationService() {
+		return new LoginValidator();
+	}
+	@Bean
+	public ChangePasswordValidator changePasswordValidator() {
+		return new ChangePasswordValidator();
+	}
+	@Bean
+	public ChangePasswordService changePasswordService() {
+		return new ChangePasswordService();
 	}
 }

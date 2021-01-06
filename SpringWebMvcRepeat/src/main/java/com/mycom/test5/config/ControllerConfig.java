@@ -3,6 +3,7 @@ package com.mycom.test5.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.mycom.test5.controller.ChangePasswordController;
 import com.mycom.test5.controller.GetMembersController;
 import com.mycom.test5.controller.LoginController;
 import com.mycom.test5.controller.MemberRegisterController;
@@ -20,5 +21,9 @@ public class ControllerConfig {
 	@Bean
 	public MemberRegisterController memberRegisterController() {
 		return new MemberRegisterController();
+	}
+	@Bean
+	public ChangePasswordController changePasswordController() {
+		return new ChangePasswordController();
 	}
 }

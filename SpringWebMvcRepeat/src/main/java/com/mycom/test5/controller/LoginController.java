@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycom.test5.bean.Member;
 import com.mycom.test5.bean.MemberDao;
+import com.mycom.test5.command.AuthInfo;
 import com.mycom.test5.command.LoginCommand;
 import com.mycom.test5.service.LoginService;
+import com.mycom.test5.validator.LoginValidator;
 
 @Controller
 @RequestMapping("/login")
@@ -21,12 +23,12 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	@Autowired
-	private MemberDao memberDao;
+	private LoginValidator loginValidationService;
 	
 	@GetMapping
 	public String form(LoginCommand loginCommand, HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			if(session.getAttribute("login") == null) {
+			if(session.getAttribute("authInfo") == null) {
 				return "login/form";
 			}else {
 				return "login/done";
@@ -35,12 +37,15 @@ public class LoginController {
 	
 	@PostMapping
 	public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) {
-		loginService.login(loginCommand, errors);
+		loginValidationService.validate(loginCommand, errors);
+		AuthInfo authInfo = loginService.login(loginCommand, errors);
 		if(errors.hasErrors()) {
 			return "login/form";
 		}
-		Member member = memberDao.selectMemberByEmail(loginCommand.getEmail());
-		session.setAttribute("login", member);
+		if(authInfo != null) {
+		session.setAttribute("authInfo", authInfo);
 		return "login/done";
+		}
+		return "login/form";
 	}
 }

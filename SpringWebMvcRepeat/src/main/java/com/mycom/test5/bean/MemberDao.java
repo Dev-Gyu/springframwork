@@ -15,6 +15,11 @@ public class MemberDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	public int changePassword(Member member) {
+		int isSuccess = jdbcTemplate.update("update MEMBER set PASSWORD=? where EMAIL=?", member.getPassword(), member.getEmail());
+		return isSuccess;
+	}
+	
 	public int registerMember(Member member) {
 		int isSuccess = jdbcTemplate.update("insert into MEMBER (NAME, EMAIL, PASSWORD, REGDATE) values (?,?,?,now())", member.getName(), member.getEmail()
 				, member.getPassword());
