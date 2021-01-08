@@ -12,6 +12,7 @@ public class GetMembersService {
 	@Autowired
 	MemberDao memberDao;
 	
+	// 전체 멤버 조회
 	public List<Member> getAllMembers(){
 		List<Member> ls = memberDao.selectAllMembers();
 		if(ls != null) {
@@ -19,5 +20,11 @@ public class GetMembersService {
 		}else {
 			return Collections.emptyList();
 		}
+	}
+	
+	// id로 멤버 조회
+	public Member selectMemberById(int id) {
+		Member member = memberDao.selectById(id);
+		return member;
 	}
 }

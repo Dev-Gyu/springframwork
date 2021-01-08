@@ -17,6 +17,7 @@ import com.mycom.test5.interceptor.AuthCheckInterceptor;
 @Configuration
 @EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer{
+	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
@@ -26,15 +27,11 @@ public class MvcConfig implements WebMvcConfigurer{
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
-	
+	// AuthCheck Interceptor = spring-context에 정의되어있음
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "main");
 		registry.addViewController("/main").setViewName("main");
-	}
-	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/edit/**");
 	}
 	
 	@Bean
@@ -44,6 +41,7 @@ public class MvcConfig implements WebMvcConfigurer{
 		ms.setDefaultEncoding("UTF-8");
 		return ms;
 	}
+
 	@Bean
 	public AuthCheckInterceptor authCheckInterceptor() {
 		return new AuthCheckInterceptor();

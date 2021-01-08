@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycom.test5.command.RegisterCommand;
 import com.mycom.test5.service.RegisterMemberService;
+import com.mycom.test5.validator.RegisterMemberValidator;
 
 @Controller
 @RequestMapping("/register")
@@ -22,14 +23,21 @@ public class MemberRegisterController {
 	
 	@Autowired
 	private RegisterMemberService registerService;
+	@Autowired
+	private RegisterMemberValidator registerValidator;
 	@GetMapping
 	public String form(@ModelAttribute("command")RegisterCommand registerCommand) {
 		return "register/form";
 	}
-	
+
 	@PostMapping
 	public String submit(@ModelAttribute("command")RegisterCommand registerCommand, Errors errors,Model model) {
+		registerValidator.validate(registerCommand, errors);
+		if(errors.hasErrors()) {
+			return "register/form";
+		}
 		int isSuccess = registerService.registerMember(registerCommand);
+		
 		if(isSuccess == 0) {
 			errors.rejectValue("email", "duplicate");
 			return "register/form";

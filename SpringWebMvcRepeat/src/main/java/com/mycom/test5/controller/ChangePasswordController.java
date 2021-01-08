@@ -1,5 +1,7 @@
 package com.mycom.test5.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class ChangePasswordController {
 	}catch(NotValidateException e) {
 		return "edit/changePwdForm";
 	}catch(NotMatchingException e) {
+		return "edit/changePwdForm";
+	}catch(SQLException e) {
+		e.printStackTrace();
 		return "edit/changePwdForm";
 	}
 	}

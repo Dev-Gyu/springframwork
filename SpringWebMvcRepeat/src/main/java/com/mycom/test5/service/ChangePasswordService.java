@@ -1,5 +1,7 @@
 package com.mycom.test5.service;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,8 @@ public class ChangePasswordService {
 	@Autowired
 	private ChangePasswordValidator changePasswordValidator;
 	
-	//@Transactional
-	public void changePassword(ChangePasswordCommand changePasswordCommand, Errors errors, HttpSession session) {
+	@Transactional
+	public void changePassword(ChangePasswordCommand changePasswordCommand, Errors errors, HttpSession session) throws NotMatchingException, NotValidateException, SQLException{
 		changePasswordValidator.validate(changePasswordCommand, errors);
 		if(errors.hasErrors()) {
 			throw new NotValidateException();
@@ -30,6 +32,7 @@ public class ChangePasswordService {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		Member member = memberDao.selectMemberByEmail(authInfo.getEmail());
 		if(changePasswordCommand.getCurrentPassword().equals(member.getPassword())) {
+		member.setPassword(changePasswordCommand.getNewPassword());
 		memberDao.changePassword(member);
 		return;
 		}else {

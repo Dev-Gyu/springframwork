@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.mycom.test5.controller.ChangePasswordController;
 import com.mycom.test5.controller.GetMembersController;
 import com.mycom.test5.controller.LoginController;
+import com.mycom.test5.controller.LogoutController;
 import com.mycom.test5.controller.MemberRegisterController;
 
 @Configuration
@@ -25,5 +26,9 @@ public class ControllerConfig {
 	@Bean
 	public ChangePasswordController changePasswordController() {
 		return new ChangePasswordController();
+	}
+	@Bean
+	public LogoutController logoutController() {
+		return new LogoutController();
 	}
 }

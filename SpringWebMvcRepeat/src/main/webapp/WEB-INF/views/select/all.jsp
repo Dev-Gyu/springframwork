@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전체 멤버 조회</title>
 </head>
 <body>
 	<h2>전체멤버조회페이지</h2>
 	<hr>
 	<c:forEach var="member" items="${members }" varStatus="status">
-		${status.index +1 } 번째 멤버 <br>
+		<a href="<c:url value="/select/${member.id}"/>">${status.index +1 } 번째 멤버</a> <br>
 		아이디: ${member.id }
 		이름: ${member.name }
 		이메일: ${member.email }

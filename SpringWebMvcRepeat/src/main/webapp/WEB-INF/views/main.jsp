@@ -15,7 +15,7 @@
 	<a href="<c:url value="/login"/>">로그인</a> <a href="<c:url value="/register"/>">회원가입</a>
 	</c:if>
 	<c:if test="${authInfo != null }">
-	<a href="<c:url value="/select/all"/>">모든 멤버 조회</a> <a href="<c:url value="/edit/changePassword"/>">비밀번호 변경</a>
+	<a href="<c:url value="/select/all"/>">모든 멤버 조회</a> <a href="<c:url value="/edit/changePassword"/>">비밀번호 변경</a> <a href="<c:url value='/logout'/>">로그아웃</a>
 	</c:if>
 </body>
 </html>

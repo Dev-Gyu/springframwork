@@ -23,6 +23,14 @@
 	
 	<context:component-scan base-package="com.mycom.test5" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/edit/**"/>
+			<mapping path="/select/**"/>
+			<exclude-mapping path="/login"/>
+			<beans:bean class="com.mycom.test5.interceptor.AuthCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

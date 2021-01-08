@@ -18,9 +18,10 @@ import com.mycom.test5.service.LoginService;
 import com.mycom.test5.service.RegisterMemberService;
 import com.mycom.test5.validator.ChangePasswordValidator;
 import com.mycom.test5.validator.LoginValidator;
+import com.mycom.test5.validator.RegisterMemberValidator;
 
 @Configuration
-//@EnableTransactionManagement
+@EnableTransactionManagement
 public class BeanConfig {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
@@ -38,14 +39,13 @@ public class BeanConfig {
 		dataSource.setMinEvictableIdleTimeMillis(60000 * 3);
 		return dataSource;
 	}
-	/*
+	
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		DataSourceTransactionManager tm = new DataSourceTransactionManager();
 		tm.setDataSource(dataSource());
 		return tm;
 	}
-	*/
 	@Bean
 	public MemberDao memberDao() {
 		MemberDao memberDao = new MemberDao();
@@ -75,5 +75,9 @@ public class BeanConfig {
 	@Bean
 	public ChangePasswordService changePasswordService() {
 		return new ChangePasswordService();
+	}
+	@Bean
+	public RegisterMemberValidator registerMemberValidator() {
+		return new RegisterMemberValidator();
 	}
 }

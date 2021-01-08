@@ -16,10 +16,10 @@
 	<form:errors path="email"/>
 	</label><br>
 	<label>
-	<spring:message code="form.password"/><form:input path="password"/>
+	<spring:message code="form.password"/><form:input path="password"/><form:errors path="password"/>
 	</label><br>
 	<label>
-	<spring:message code="form.name"/><form:input path="name"/>
+	<spring:message code="form.name"/><form:input path="name"/><form:errors path="name"/>
 	</label><br>
 	<input type="submit" value="<spring:message code='form.submit'/>"/>
 	</form:form>
