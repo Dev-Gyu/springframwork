@@ -11,7 +11,7 @@
 <body>
 <form:form modelAttribute="registerCommand">
 <h2><spring:message code="register.title"/></h2><hr>
-<spring:message code="email"/>: <form:input path="email"/><br>
+<spring:message code="email"/>: <form:input path="email"/><form:errors path="email"/><br>
 <spring:message code="password"/>: <form:input path="password"/><br>
 <spring:message code="name"/>: <form:input path="name"/><br>
 <input type="submit" value="회원가입"/>

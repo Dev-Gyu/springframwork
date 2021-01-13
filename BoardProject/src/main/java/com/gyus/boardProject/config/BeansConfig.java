@@ -5,6 +5,8 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.gyus.boardProject.dao.MemberDAO;
 
@@ -12,7 +14,7 @@ import com.gyus.boardProject.dao.MemberDAO;
 public class BeansConfig {
 	// tomcat-jdbc 이용한 connectionPool생성 및 DB연동
 	
-	@Bean
+	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		DataSource dataSource = new DataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -26,6 +28,12 @@ public class BeansConfig {
 		dataSource.setTimeBetweenEvictionRunsMillis(1000*60*3);
 		dataSource.setMinEvictableIdleTimeMillis(1000*60*5);
 		return dataSource;
+	}
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager tm = new DataSourceTransactionManager();
+		tm.setDataSource(dataSource());
+		return tm;
 	}
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
