@@ -4,6 +4,21 @@ public class RegisterCommand {
 	private String email;
 	private String password;
 	private String name;
+	private String sex;
+	private String cellphone;
+	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getCellphone() {
+		return cellphone;
+	}
+	public void setCellphone(String cellPhone) {
+		this.cellphone = cellPhone;
+	}
 	public String getEmail() {
 		return email;
 	}

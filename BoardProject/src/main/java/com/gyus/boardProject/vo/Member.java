@@ -8,7 +8,21 @@ public class Member {
 	private String password;
 	private String name;
 	private LocalDateTime regDate;
+	private String cellphone;
+	private String sex;
 	
+	public String getCellphone() {
+		return cellphone;
+	}
+	public void setCellphone(String cellPhone) {
+		this.cellphone = cellPhone;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	public int getId() {
 		return id;
 	}

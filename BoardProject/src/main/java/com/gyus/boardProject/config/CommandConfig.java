@@ -3,6 +3,7 @@ package com.gyus.boardProject.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.gyus.boardProject.command.ChangePwCommand;
 import com.gyus.boardProject.command.LoginCommand;
 import com.gyus.boardProject.command.RegisterCommand;
 import com.gyus.boardProject.command.SignOutCommand;
@@ -21,5 +22,9 @@ public class CommandConfig {
 	@Bean
 	public SignOutCommand signOutCommand() {
 		return new SignOutCommand();
+	}
+	@Bean
+	public ChangePwCommand changePwCommand() {
+		return new ChangePwCommand();
 	}
 }

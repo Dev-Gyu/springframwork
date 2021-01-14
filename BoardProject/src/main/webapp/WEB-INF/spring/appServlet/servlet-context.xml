@@ -23,6 +23,11 @@
 	
 	<context:component-scan base-package="com.gyus.boardProject" />
 	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/**"/>
+			<beans:bean class="com.gyus.boardProject.interceptor.AuthCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.gyus.boardProject.dao.MemberDAO;
+import com.gyus.boardProject.interceptor.AuthCheckInterceptor;
 
 @Configuration
 public class BeansConfig {

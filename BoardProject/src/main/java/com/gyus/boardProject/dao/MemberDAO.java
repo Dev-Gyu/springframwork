@@ -17,7 +17,7 @@ public class MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 	private String sql;
 	
-	// 멤버 id 재정렬
+	// MEMBER Table id 재정렬
 	private void idReAlignment() {
 		sql = "set @CNT:=0";
 		String sql2 = "update MEMBER set ID = @CNT:=@CNT+1";
@@ -33,13 +33,13 @@ public class MemberDAO {
 		jdbcTemplate.update(sql, email);
 		idReAlignment();
 	}
-	// 멤버 비밀번호 변경
-	public void changePassword(Member member, String newPassword) {
-		sql = "update MEMBER set PASSWORD = ? where id = ?";
-		jdbcTemplate.update(sql, newPassword, member.getId());
+	// 회원 정보 수정
+	public void memberUpdate(Member changedMember) {
+		sql = "update MEMBER set EMAIL = ?, PASSWORD = ?, CELLPHONE = ? where id = ?";
+		jdbcTemplate.update(sql, changedMember.getEmail(), changedMember.getPassword(), changedMember.getCellphone(), changedMember.getId());
 	}
 	
-	// 이메일로 멤버 하나만 가져오는 메소드
+	// 이메일로 회원 하나만 가져오는 메소드
 	public Member selectOne(String email) {
 		sql = "select * from MEMBER where EMAIL = ?";
 		List<Member> ls = jdbcTemplate.query(sql, new RowMapper<Member>() {
@@ -51,6 +51,8 @@ public class MemberDAO {
 				member.setPassword(rs.getString("password"));
 				member.setName(rs.getString("name"));
 				member.setRegDate(rs.getTimestamp("regdate").toLocalDateTime());
+				member.setSex(rs.getString("sex"));
+				member.setCellphone(rs.getString("cellphone"));
 				return member;
 			}
 		},email);
@@ -64,7 +66,7 @@ public class MemberDAO {
 	
 	// 회원가입
 	public void insert(RegisterCommand registerCommand) {
-		sql = "insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE) values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, registerCommand.getEmail(), registerCommand.getPassword(), registerCommand.getName(), LocalDateTime.now());
+		sql = "insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE, CELLPHONE, SEX) values (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, registerCommand.getEmail(), registerCommand.getPassword(), registerCommand.getName(), LocalDateTime.now(), registerCommand.getCellphone(), registerCommand.getSex());
 	}
 }

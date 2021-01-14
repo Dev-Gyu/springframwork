@@ -16,14 +16,14 @@ import com.gyus.boardProject.exception.PasswordNotMatchingException;
 import com.gyus.boardProject.service.MemberSignOutService;
 
 @Controller
-@RequestMapping("/signout")
+@RequestMapping("/member/signout")
 public class MemberSignOutController {
 	@Autowired
 	private MemberSignOutService memberSignOutService;
 	
 	@GetMapping
 	public String pwRepeatForm(Model model) {
-		return "signout/PwRepeat";
+		return "member/signout/PwRepeat";
 	}
 	
 	// 유효성체크 뷰페이지로함
@@ -33,10 +33,10 @@ public class MemberSignOutController {
 		String nowPassword = signOutCommand.getNowPassword();
 		try {
 			memberSignOutService.signOut(session, nowPassword);
-			return "signout/done";
+			return "member/signout/done";
 		}catch(PasswordNotMatchingException e) {
 			errors.reject("password.mismatch");
-			return "signout/PwRepeat";
+			return "member/signout/PwRepeat";
 		}
 		
 	}
