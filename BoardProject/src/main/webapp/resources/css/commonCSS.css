@@ -1,0 +1,90 @@
+    body{   
+		background-color: dimgray;
+	}
+	#layoutDiv{
+		display: grid;
+		text-align: center;
+		grid-template-rows: 180px 100px 1200px;
+		max-width: 80%;
+		margin: auto;
+	}
+	#top{
+		color: ivory;
+		grid-column: 1/2;
+		grid-row: 1/2;
+	}
+	.mainTitle{
+		text-align:center;
+	}
+	.loginInfo{
+		text-align:right;
+	}
+	#boardNames{
+		display:grid;
+		grid-template-columns: auto;
+		grid-template-rows: 50px;
+	}
+	#boardName1{
+		display: inline-block;
+		grid-row: 1/2;
+		grid-column: 1/2;
+		padding-top: 3px;
+		text-align: center;
+	}
+	#boardName2{
+		display: inline-block;
+		grid-row: 1/2;
+		grid-column: 2/3;
+		padding-top: 3px;
+		text-align: center;
+	}
+	#boardName3{
+		display: inline-block;
+		grid-row: 1/2;
+		grid-column: 3/4;
+		padding-top: 3px;
+		text-align: center;
+	}
+	#boardName4{
+		display: inline-block;
+		grid-row: 1/2;
+		grid-column: 4/5;
+		padding-top: 3px;
+		text-align: center;
+	}
+	#boardTitle{
+		grid-column: 1/2;
+		grid-row: 2/3;
+		background-color: darkgrey;
+		border: solid ivory;
+		margin-bottom: 10px;
+		font-size: 50px;
+		text-align: center;
+	}
+	#body{
+		grid-column: 1/2;
+		grid-row: 3/4;
+
+		display: grid;
+		grid-template-columns: 0.15fr auto;
+		grid-template-rows: 0.7fr 0.3fr;
+	}
+	#body>.subBoard{
+		grid-column: 1/2;
+		grid-row: 1/2;
+		font-size: 20px;
+		padding: 2px;
+		background-color:darkgrey;
+		border: solid ivory;
+		border-right-color: gray;
+		border-width: 2px;
+		text-align: center;
+	}
+	#body>.mainBody{
+		grid-column: 2/3;
+		grid-row: 1/2;
+		padding: 4px;
+		font-size: 16px;
+		background-color: white;
+		overflow: visible;
+	}
