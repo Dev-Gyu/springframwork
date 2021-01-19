@@ -7,10 +7,45 @@
 <head>
 <meta charset="UTF-8">
 <title><spring:message code="login.title"/></title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/commonCSS.css"/>
+<style>
+	#body{
+		display: block;
+		background-color: darkgray;
+	}
+	#boardTitle{
+		text-align: center;
+	}
+	#body{
+		text-align: center;
+	}
+	.welcome{
+		font-size: 30px;
+	}
+	#body>a, #body>a:visited{
+		color: black;
+	}
+	#body>a:hover{
+		color: ivory;
+	}
+</style>
 </head>
 <body>
-<h2><spring:message code="login.done"/></h2><hr>
-<h3>${authInfo.name }님 환영합니다.</h3>
-<a href="<c:url value="/index"/>">메인화면으로 돌아가기</a>
+	<div id="layoutDiv">
+		<div id="top">
+			<jsp:include page="/resources/commons/layoutTop.jsp"/>
+			
+		<div id="boardTitle">
+			<spring:message code="login.done"/>
+		</div>
+		
+		<div id="body">
+			<span class="welcome">${authInfo.name }님 환영합니다.</span>
+			<p></p>
+			<a href="<c:url value="/index"/>">메인화면으로 돌아가기</a>
+		</div>
+		
+		</div>
+	</div>
 </body>
 </html>

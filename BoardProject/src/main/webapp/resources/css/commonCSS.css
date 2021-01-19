@@ -1,11 +1,17 @@
     body{   
 		background-color: dimgray;
-	}
+    }
+    a{
+        text-decoration: none;
+    }
+    hr {
+    	margin-top: 4px;
+    }
 	#layoutDiv{
 		display: grid;
-		text-align: center;
-		grid-template-rows: 180px 100px 1200px;
-		max-width: 80%;
+		grid-template-rows: 150px 80px 1000px;
+        max-width: 80%;
+        min-width: 500px;
 		margin: auto;
 	}
 	#top{
@@ -14,77 +20,103 @@
 		grid-row: 1/2;
 	}
 	.mainTitle{
-		text-align:center;
+        text-align:center;
+        margin-top:8px;
+    }
+    .mainTitle>a, .mainTitle>a:visited{
+        color:ivory;
+        font-size:35px;
+    }
+    .mainTitle>a:hover{
+        color:black;
 	}
 	.loginInfo{
 		text-align:right;
-	}
+		font-size: 16px;
+    }
+    .register>a, .login>a{
+        color: ivory;
+        border: solid ivory 1px;
+        padding: 1px;
+    }
+    .register>a:hover, .login>a:hover{
+        background-color: darkgray;
+    }
 	#boardNames{
 		display:grid;
 		grid-template-columns: auto;
-		grid-template-rows: 50px;
+        grid-template-rows: 50px;
+        overflow-y: auto;
 	}
-	#boardName1{
+	.boardName{
 		display: inline-block;
 		grid-row: 1/2;
-		grid-column: 1/2;
-		padding-top: 3px;
-		text-align: center;
-	}
-	#boardName2{
-		display: inline-block;
-		grid-row: 1/2;
-		grid-column: 2/3;
-		padding-top: 3px;
-		text-align: center;
-	}
-	#boardName3{
-		display: inline-block;
-		grid-row: 1/2;
-		grid-column: 3/4;
-		padding-top: 3px;
-		text-align: center;
-	}
-	#boardName4{
-		display: inline-block;
-		grid-row: 1/2;
-		grid-column: 4/5;
-		padding-top: 3px;
-		text-align: center;
-	}
+        text-align: center;
+        padding: 0px 0px;
+        margin: 0px 0px;
+    }
+    .boardName>a{
+        color: ivory;
+        display: inline-block;
+        padding: 13px 60px;
+    }
+    .boardName>a:hover{
+        background-color: darkgray;
+    }
 	#boardTitle{
 		grid-column: 1/2;
 		grid-row: 2/3;
 		background-color: darkgrey;
 		border: solid ivory;
 		margin-bottom: 10px;
-		font-size: 50px;
-		text-align: center;
-	}
+		font-size: 30px;
+        text-align: left;
+        padding:13px;
+    }
+    .boardTitleLink{
+    	vertical-align: middle;
+    }
+    .boardTitleLink>a{
+   	 	vertical-align: middle;
+        color: black;
+    }
+    .boardTitleLink>a:active,a:hover{
+        color:ivory;
+    }
 	#body{
 		grid-column: 1/2;
 		grid-row: 3/4;
-
 		display: grid;
-		grid-template-columns: 0.15fr auto;
+		grid-template-columns: 150px auto;
 		grid-template-rows: 0.7fr 0.3fr;
 	}
 	#body>.subBoard{
 		grid-column: 1/2;
 		grid-row: 1/2;
-		font-size: 20px;
-		padding: 2px;
+		font-size: 16px;
+		padding-top:12px;
 		background-color:darkgrey;
 		border: solid ivory;
 		border-right-color: gray;
 		border-width: 2px;
-		text-align: center;
+        text-align: center;
+    }
+    .subBoard>a, .subBoard>a:visited{
+		color: black;
+		border: solid black 2px;
+		padding:2px;
+	}
+	.subBoard>a:hover{
+		background-color: ivory;
 	}
 	#body>.mainBody{
 		grid-column: 2/3;
 		grid-row: 1/2;
-		padding: 4px;
+		padding: 8px;
 		font-size: 16px;
 		background-color: white;
-		overflow: visible;
+        overflow: visible;
+        border-top:solid darkgray 2px;
+        border-right:solid darkgray 2px;
+        border-bottom:solid darkgray 2px;
 	}
